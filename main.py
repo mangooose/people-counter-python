@@ -193,30 +193,30 @@ def main():
             if current_count > last_count:
                 start_time = time.time()
                 total_count = total_count + current_count - last_count
-                client.publish("person", json.dumps({"total": total_count}))
+                #client.publish("person", json.dumps({"total": total_count}))
 
             # Person duration in the video is calculated
             if current_count < last_count:
                 duration = int(time.time() - start_time)
                 # Publish messages to the MQTT server
-                client.publish("person/duration",
-                               json.dumps({"duration": duration}))
+                #client.publish("person/duration",
+                               #json.dumps({"duration": duration}))
 
-            client.publish("person", json.dumps({"count": current_count}))
+            #client.publish("person", json.dumps({"count": current_count}))
             last_count = current_count
 
             if key_pressed == 27:
                 break
 
         # Send frame to the ffmpeg server
-        sys.stdout.buffer.write(frame)  
-        sys.stdout.flush()
+        #sys.stdout.buffer.write(frame)  
+        #sys.stdout.flush()
 
         if single_image_mode:
-            cv2.imwrite('output_image.jpg', frame)
+            #cv2.imwrite('output_image.jpg', frame)
     cap.release()
     cv2.destroyAllWindows()
-    client.disconnect()
+    #client.disconnect()
     infer_network.clean()
 
 
